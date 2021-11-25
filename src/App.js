@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { useState } from "react";
 import "./App.css";
 import './material-dashboard.css'
 import Header from "./components/layouts/header/header";
@@ -8,18 +8,15 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <Fragment  >
-      <div className="bg-light page-global">
+    <>
         <Router>
-          <Header />
-          <div className="container mt-5">
             <IndexRoute></IndexRoute>
             <ToastContainer />
-          </div>
         </Router>
-      </div>
-    </Fragment>
+    </>
   );
 }
 

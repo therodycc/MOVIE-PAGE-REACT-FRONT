@@ -1,5 +1,6 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { login } from "../../../auth/login";
 
 function Header() {
   return (
@@ -31,17 +32,12 @@ function Header() {
                 </span>
               </Link>
 
-
-              {/*         <button type="button" className="btn btn-info mr-3">
-              <i className="fas fa-compact-disc text-warning mr-2"></i>
-                Movies
-              </button> */}
             </ul>
             <Link to="/auth/login">
-                <button className="btn btn-danger m-0">
-                  Logout
-                </button>
-              </Link>
+              <button className="btn btn-danger m-0">
+                Logout
+              </button>
+            </Link>
           </div>
         </div>
       </nav>

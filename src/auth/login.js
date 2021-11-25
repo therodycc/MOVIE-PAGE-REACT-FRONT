@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './login.css';
 
 export const login = () => {
@@ -10,7 +11,7 @@ export const login = () => {
                         {/* <!-- Navbar --> */}
                         <nav className="navbar navbar-expand-lg blur border-radius-xl top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                             <div className="container-fluid ps-2 pe-0">
-                                
+
                             </div>
                         </nav>
                         {/* <!-- End Navbar --> */}
@@ -61,7 +62,9 @@ export const login = () => {
                                                 <label className="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
                                             </div>
                                             <div className="text-center">
-                                                <button type="button" className="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
+                                                <Link to="/home">
+                                                    <button type="button" className="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
+                                                </Link>
                                             </div>
                                             <p className="mt-4 text-sm text-center">
                                                 Don't have an account?
