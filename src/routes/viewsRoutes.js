@@ -1,9 +1,8 @@
 import React from 'react'
 import actorsRoutes from './actorsRoutes'
-import authRoutes from './authRoutes'
 import { popupRoutes } from './popupRoutes'
 // from react
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 // pages
 // routes
 import moviesRoutes from "./moviesRoutes";
@@ -16,6 +15,9 @@ const viewsRoutes = () => {
             <Route path="/actors" component={actorsRoutes}></Route>
             <Route path="/movies" component={moviesRoutes}></Route>
             <Route path="/popup" component={popupRoutes}></Route>
+            <Route path="*">
+                <Redirect to="/home"></Redirect>
+            </Route>
         </Switch>
     )
 }

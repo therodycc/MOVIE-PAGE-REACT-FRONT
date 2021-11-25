@@ -33,7 +33,7 @@ function Header() {
               </Link>
 
             </ul>
-            <Link to="/auth/login">
+            <Link  to="/auth/login">
               <button className="btn btn-danger m-0">
                 Logout
               </button>

@@ -6,7 +6,14 @@ import { login } from "../auth/login";
 const authRoutes = () => {
     return (
         <Switch>
-            <Route exact path="/auth/login" component={login}></Route>
+            <Route path="/login" component={login}></Route>
+            <Route path="/login" component={login}></Route>
+            <Route path="/auth">
+                <Redirect to="/login"></Redirect>
+            </Route>
+            <Route path="*">
+                <Redirect to="/login"></Redirect>
+            </Route>
         </Switch>
     );
 };

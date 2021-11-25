@@ -13,6 +13,9 @@ const IndexRoute = () => {
     <Switch>
       <Route path="/auth" component={login}></Route>
       <Route path="/home" component={views}></Route>
+      <Route path="*">
+        <Redirect to="/auth/login"></Redirect>
+      </Route>
     </Switch>
   );
 };

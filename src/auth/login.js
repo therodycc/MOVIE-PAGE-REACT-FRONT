@@ -11,7 +11,9 @@ export const login = () => {
                         {/* <!-- Navbar --> */}
                         <nav className="navbar navbar-expand-lg blur border-radius-xl top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                             <div className="container-fluid ps-2 pe-0">
-
+                                <button className="btn btn-primary m-0 text-center">
+                                    .
+                                </button>
                             </div>
                         </nav>
                         {/* <!-- End Navbar --> */}
@@ -23,7 +25,7 @@ export const login = () => {
                     <span className="mask bg-gradient-dark opacity-6"></span>
                     <div className="container my-auto">
                         <div className="row">
-                            <div className="col-lg-4 col-md-8 col-12 mx-auto">
+                            <div className="col-lg-5 col-md-8 col-12 mx-auto">
                                 <div className="card z-index-0 fadeIn3 fadeInBottom">
                                     <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                         <div className="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
