@@ -97,17 +97,6 @@ function Home() {
       ) : (
         ""
       )}
-
-      {!movies ? (
-        <div className="p-5">
-          <h1 className="text-danger col-lg-8 offset-2 mb-5">
-            Service Unavailable 503
-          </h1>
-          <img src={serverDownImg} className="col-lg-6 offset-3" alt="" />
-        </div>
-      ) : (
-        ""
-      )}
       {loading ? <Loading></Loading> : ""}
     </Fragment>
   );

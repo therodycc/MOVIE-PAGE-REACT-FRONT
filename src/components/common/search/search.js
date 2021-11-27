@@ -1,19 +1,18 @@
 import { Fragment } from "react";
 
-function Search() {
+function Search({ text, action }) {
   return (
-    <Fragment>
+    <>
       <div className="input-group mb-3">
-        <span className="input-group-text" id="basic-addon1">
-          @
-        </span>
         <input
           type="text"
-          className="form-control"
+          className="form-control  bg-white pl-5"
           placeholder="Search"
+          value={text}
+          onChange={(e) => action(e)}
         />
       </div>
-    </Fragment>
+    </>
   );
 }
 

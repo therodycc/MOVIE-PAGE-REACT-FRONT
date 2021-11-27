@@ -8,8 +8,11 @@ import httpService from "../../../services/httpService";
 // css
 import "./listMovies.css";
 // assets
-import serverDownImg from "../../../assets/serverdown.svg";
 import addNewImg from "../../../assets/addNew.svg";
+import Table from "../../../components/common/table/table";
+import NotFound from "../../../components/common/not-found/not-found";
+import Search from "../../../components/common/search/search";
+import Select from "../../../components/common/select-input/select";
 
 function ListMovies() {
   const [movies, setMovies] = useState([]);
@@ -65,35 +68,72 @@ function ListMovies() {
     setMovies(searchResult);
   };
 
+  const HEADERS = [
+    { title: "ID", key: "id" },
+    {
+      title: "Photo",
+      key: "",
+      render: (item) => {
+        return (
+          <>
+            <img src={item.data.photo} alt="Logo" className="imgTable" />
+          </>
+        );
+      },
+    },
+    { title: "Title", key: "title" },
+    { title: "Premiere", key: "premiere" },
+    { title: "Gender", key: "gender" },
+    {
+      title: "Actions",
+      key: "",
+      render: (item) => {
+        return (
+          <>
+            <Link
+              to={"/popup/actors/" + item.data.id}
+              className="btn btn-primary m-1"
+            >
+              <i className="far fa-star mr-1 text-warning"></i> See
+            </Link>
+            <button
+              onClick={(id) => deleteMovie(item.data.id)}
+              type="button"
+              className="btn btn-danger m-1"
+            >
+              <i className="fas fa-user-alt-slash"></i>
+            </button>
+            <Link
+              to={"/movies/form/" + item.data.id}
+              type="button"
+              className="btn btn-warning m-1"
+            >
+              <i className="fas fa-user-edit"></i>
+            </Link>
+          </>
+        );
+      },
+    },
+  ];
+
   return (
     <Fragment>
-      
       <div className="row mt-3 d-flex justify-content-between">
         <div className="col-lg-8">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control  bg-white pl-5"
-              placeholder="Search"
-              value={search}
-              onChange={(e) => searchData(e)}
-            />
-          </div>
+          <Search text={search} action={searchData} />
         </div>
         <div className="col-lg-2">
-          <select
-            className="form-control mb-3  bg-white pl-5"
-            aria-label=".form-select-lg example"
-            onChange={(e) => searchBy(e)}
-          >
-            <option value="">GENERAL</option>
-            <option value="FICTION">FICTION</option>
-            <option value="ADVENTURE">ADVENTURE</option>
-            <option value="COMEDY">COMEDY</option>
-            <option value="TERROR">TERROR</option>
-            <option value="ACTION">ACTION</option>
-            <option value="SUSPENSE">SUSPENSE</option>
-          </select>
+          <Select
+            action={searchBy}
+            options={[
+              "FICTION",
+              "ADVENTURE",
+              "COMEDY",
+              "TERROR",
+              "ACTION",
+              "SUSPENSE",
+            ]}
+          />
         </div>
 
         <div className="col-lg-2">
@@ -104,90 +144,17 @@ function ListMovies() {
       </div>
 
       <div className="card">
-        {movies ? (
-          
-          <div className="card-body table-responsive">
-            <div className="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 className="text-white text-capitalize ps-3">Movies</h6>
-              </div>
-            <table className="table table-hover">
-              <thead className="text-warning">
-                <tr>
-                  <th>ID</th>
-                  <th>Photo</th>
-                  <th>Name</th>
-                  <th>Premiere</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {movies.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>
-                      <img src={item.photo} alt="Logo" className="imgTable" />
-                    </td>
-                    <td>{item.title}</td>
-                    <td>{item.premiere}</td>
-                    <td>{item.gender}</td>
-
-                    <td>
-                      <Link
-                        to={"/popup/actors/" + item.id}
-                        className="btn btn-primary m-1"
-                      >
-                        <i className="far fa-star mr-1 text-warning"></i> See
-                      </Link>
-                      <button
-                        onClick={(id) => deleteMovie(item.id)}
-                        type="button"
-                        className="btn btn-danger m-1"
-                      >
-                        <i className="fas fa-user-alt-slash"></i>
-                      </button>
-                      <Link
-                        to={"/movies/form/" + item.id}
-                        type="button"
-                        className="btn btn-warning m-1" 
-                      >
-                        <i className="fas fa-user-edit"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-            {TableMovies.length === 0 ? (
-              <div>
-                <h1 className="text-warning col-lg-4 mt-5 offset-4">
-                  Add new movie
-                </h1>
-                <img
-                  src={addNewImg}
-                  className="col-lg-4 mt-5 offset-4"
-                  alt=""
-                />
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        ) : (
-          ""
-        )}
-
-        {!movies ? (
-          <div className="p-5">
-            <h1 className="text-danger col-lg-8 offset-2 mb-5">
-              Service Unavailable 503
-            </h1>
-            <img src={serverDownImg} className="col-lg-6 offset-3" alt="" />
-          </div>
-        ) : (
-          ""
-        )}
+        <div className="card-body">
+          <Table headers={HEADERS} items={movies} title={"Movies"}></Table>
+          {!movies ? <Loading></Loading> : ""}
+          {movies.length === 0 && movies ? (
+            <>
+              <NotFound title={"No found movies"} urlImg={addNewImg} />
+            </>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </Fragment>
   );

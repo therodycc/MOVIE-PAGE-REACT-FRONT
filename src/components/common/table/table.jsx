@@ -1,11 +1,11 @@
 import React from "react";
 
-const Table = ({ items, headers }) => {
+const Table = ({ items, headers, title }) => {
     return (
         <>
             <div className="card-body">
                 <div className="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                    <h6 className="text-white text-capitalize ps-3">Actors</h6>
+                    <h6 className="text-white text-capitalize ps-3">{title}</h6>
                 </div>
                 <div className=" table-responsive">
                     <table className="table table-hover">
@@ -24,7 +24,7 @@ const Table = ({ items, headers }) => {
                                             <td>
                                                 {!item[head.key] && (<head.render data={item} />)}
                                                 {item[head.key] && (item[head.key] || '')}
-                                            </td>
+                                            </td>   
                                         </>
                                     ))}
 
