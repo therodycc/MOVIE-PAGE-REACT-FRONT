@@ -9,6 +9,8 @@ import "./listActors.css";
 // assets
 import serverDownImg from "../../../assets/serverdown.svg";
 import addNewImg from "../../../assets/addNew.svg";
+import Table from "../../../components/common/table/table";
+import NotFound from "../../../components/common/not-found/not-found";
 
 function ListActors() {
   const [actors, setActors] = useState([]);
@@ -64,8 +66,57 @@ function ListActors() {
     });
     setActors(searchResult);
   };
+
+  const HEADERS = [
+    { title: "ID", key: "id" },
+    {
+      title: "Photo",
+      key: "",
+      render: (item) => {
+        return (
+          <>
+            <img src={item.data.photo} alt="Logo" className="imgTable" />
+          </>
+        );
+      },
+    },
+    { title: "Name", key: "full_name" },
+    { title: "Born", key: "born" },
+    { title: "Gender", key: "gender" },
+    {
+      title: "Actions",
+      key: "",
+      render: (item) => {
+        console.log(item.data.id);
+        return (
+          <>
+            <Link
+              to={"/popup/movies/" + item.data.id}
+              className="btn btn-primary m-1"
+            >
+              <i className="far fa-star mr-1 text-warning"></i> See
+            </Link>
+            <button
+              onClick={(id) => deleteItem(item.data.id)}
+              type="button"
+              className="btn btn-danger m-1"
+            >
+              <i className="fas fa-user-alt-slash"></i>
+            </button>
+            <Link
+              to={"/actors/form/" + item.data.id}
+              type="button"
+              className="btn btn-warning m-1"
+            >
+              <i className="fas fa-user-edit"></i>
+            </Link>
+          </>
+        );
+      },
+    },
+  ];
   return (
-    <Fragment>
+    <>
       <div className="row mt-3 d-flex justify-content-between">
         <div className="col-lg-8">
           <div className="input-group mb-3">
@@ -97,70 +148,13 @@ function ListActors() {
       </div>
       <div className="card">
         {actors ? (
-          <div className="card-body table-responsive">
-            <div className="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 className="text-white text-capitalize ps-3">Actors</h6>
-              </div>
-            <table className="table table-hover">
-              <thead className="text-warning">
-                <tr>
-                  <th>ID</th>
-                  <th>Photo</th>
-                  <th>Name</th>
-                  <th>Born</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                {actors.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>
-                      <img src={item.photo} alt="Logo" className="imgTable" />
-                    </td>
-                    <td>{item.full_name}</td>
-                    <td>{item.born}</td>
-                    <td>{item.gender}</td>
-
-                    <td>
-                      <Link
-                        to={"/popup/movies/" + item.id}
-                        className="btn btn-primary m-1"
-                      >
-                        <i className="far fa-star mr-1 text-warning"></i> See
-                      </Link>
-                      <button
-                        onClick={(id) => deleteItem(item.id)}
-                        type="button"
-                        className="btn btn-danger m-1"
-                      >
-                        <i className="fas fa-user-alt-slash"></i>
-                      </button>
-                      <Link
-                        to={"/actors/form/" + item.id}
-                        type="button"
-                        className="btn btn-warning m-1"
-                      >
-                        <i className="fas fa-user-edit"></i>
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="card-body">
+            <Table headers={HEADERS} items={actors}></Table>
             {!actors ? <Loading></Loading> : ""}
-
-            {actors.length === 0 ? (
-              <div>
-                <h1 className="text-warning col-lg-4 mt-5 offset-4">
-                  Add new actor
-                </h1>
-                <img
-                  src={addNewImg}
-                  className="col-lg-4 mt-5 offset-4"
-                  alt=""
-                />
-              </div>
+            {actors.length === 0 && actors? (
+              <>
+                <NotFound title={"No found actors"} urlImg={addNewImg} />
+              </>
             ) : (
               ""
             )}
@@ -174,7 +168,7 @@ function ListActors() {
           </div>
         )}
       </div>
-    </Fragment>
+    </>
   );
 }
 

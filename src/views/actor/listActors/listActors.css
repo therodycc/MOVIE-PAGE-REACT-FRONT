@@ -3,3 +3,7 @@
   height: 70px;
   object-fit: cover;
 }
+
+.img-not-found{
+  max-width: 200px !important;
+}
