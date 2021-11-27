@@ -21,7 +21,7 @@ const Table = ({ items, headers, title }) => {
                                 <tr key={item.id}>
                                     {headers.map((head) => (
                                         <>
-                                            <td>
+                                            <td >
                                                 {!item[head.key] && (<head.render data={item} />)}
                                                 {item[head.key] && (item[head.key] || '')}
                                             </td>   
