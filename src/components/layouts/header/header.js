@@ -46,7 +46,7 @@ function Header() {
                 </span>
               </Link>
               <Link to="/auth/login">
-                <button className="btn btn-danger m-0 ">Logout</button>
+                <button className="btn btn-primary m-0 ">Logout</button>
               </Link>
             </ul>
           </div>
