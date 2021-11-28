@@ -36,7 +36,7 @@ function PopUp() {
   const getActorsMovie = async () => {
     try {
       const data = await httpService.get(
-      `http://localhost:3000/api/movies/${id}/actors`
+        `http://localhost:3000/api/movies/${id}/actors`
       );
       setListActorsMovie(data ?? []);
     } catch (error) {
@@ -69,11 +69,10 @@ function PopUp() {
       return;
     }
     const data = {
-      actorId: idActor, 
+      actorId: idActor,
       movieId: id,
     };
-    httpService.post(`http://localhost:3000/api/popup`, data)
-    .then(() => {
+    httpService.post(`http://localhost:3000/api/popup`, data).then(() => {
       getActorsMovie();
     });
   };
@@ -208,9 +207,9 @@ function PopUp() {
           >
             Add new
           </button>
-            <Link to="/home" className="btn btn-danger col-lg-4">
-          Back home
-        </Link>
+          <Link to="/home" className="btn btn-danger col-lg-4">
+            Back home
+          </Link>
         </div>
       </div>
       <div className="row mt-3">
@@ -232,42 +231,45 @@ function PopUp() {
           </div>
         </div>
         <div className="col-lg-8">
-          <ul className="list-group">
-            {(path === "/popup/actors/:id"
-              ? listActorsMovie
-              : listMoviesActor
-            ).map((e) => (
-              <li
-                className="list-group-item border-list-item mb-3 "
-                key={path === "/popup/actors/:id" ? e.movieId : e.actorId}
-              >
-                <div className="row d-flex align-items-center">
-                  <div className="col-lg-2">
-                    <img className=" p-0 imgRound" src={e.photo} alt="" />
-                  </div>
-                  <div className="col-lg-8 pl-3">
-                    <h4>
-                      {path === "/popup/actors/:id" ? e.full_name : e.title}
-                    </h4>
-                    <span className="ml-3">{e.gender} </span>
-                    <span className="ml-3">
-                      {path === "/popup/actors/:id" ? e.born : e.premiere}
-                    </span>
-                  </div>
-                  <div className="col-lg-2 ">
+          <div className="card">
+            <ul className="list-group">
+              {(path === "/popup/actors/:id"
+                ? listActorsMovie
+                : listMoviesActor
+              ).map((e) => (
+                <>
+                  <li className="list-group-item border-0 d-flex align-items-center p-3 justify-content-between" key={path === "/popup/actors/:id" ? e.movieId : e.actorId}>
+                    <div className="d-flex">
+                      <div className="me-5 ">
+                        <img
+                          src={e.photo}
+                          alt="kal"
+                          className="imgRound shadow"
+                        />
+                      </div>
+                      <div className="d-flex align-items-start flex-column justify-content-center">
+                        <h6 className="mb-0 text-lg">
+                          {path === "/popup/actors/:id" ? e.full_name : e.title}
+                        </h6>
+                        <p className="mb-0 text-xs">
+                          {e.gender}  {path === "/popup/actors/:id" ? e.born : e.premiere}
+                        </p>
+                      </div>
+                    </div>
                     <i
                       onClick={(id) =>
                         path === "/popup/actors/:id"
                           ? deleteActorFromMovie(e.id)
                           : deleteMovieFromActor(e.id)
                       }
-                      className="fas fa-user-alt-slash btn btn-danger btn-lg"
+                      className="fas fa-user-alt-slash btn btn-danger btn-lg mt-3"
                     ></i>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                  </li>
+
+                </>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </Fragment>
