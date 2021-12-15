@@ -172,9 +172,9 @@ function PopUp() {
   return (
     <Fragment>
       <div className="row d-flex justify-content-between col-lg-12">
-        <h1 className="col-lg-12 p-3">
+        <h4 className="col-lg-12 p-3">
           {path === "/popup/actors/:id" ? 'Actors of a movie' : 'Movies of an actor'}
-        </h1>
+        </h4>
       </div>
       <div className="row">
         <div className="col-lg-5">

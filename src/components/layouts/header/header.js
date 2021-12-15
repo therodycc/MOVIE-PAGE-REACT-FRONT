@@ -14,8 +14,8 @@ function Header() {
             class="navbar-toggler shadow-none ms-2 collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navigation"
-            aria-controls="navigation"
+            data-bs-target="#sidenav-main"
+            aria-controls="sidenav-main"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >

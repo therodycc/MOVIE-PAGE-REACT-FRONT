@@ -6,17 +6,15 @@ import ViewsRoutes from "../routes/viewsRoutes";
 export const views = () => {
     return (
         <>
-            <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-light shadow" id="sidenav-main">
+            <aside class="sidenav navbar navbar-vertical navbar-expand-xs  border-radius-xl my-3 fixed-start ms-3  bg-white " id="sidenav-main">
                 <div class="sidenav-header">
-                    <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
-                        <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
-                    </a>
+                        <span class=" navbar-brand m-0 font-weight-bold">Movie Dashboard</span>
                 </div>
                 <hr class="horizontal mt-0 mb-2" />
                 <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <span class="nav-link bg-gradient-primary active">Dashboard</span>
+                            <span class="nav-link bg-gradient-info active">Dashboard</span>
                         </li>
                     </ul>
                 </div>
